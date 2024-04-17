@@ -1,0 +1,16 @@
+{
+    "name": "maciel/blog_faculdade",
+    "description": "Sistema gerenciador de blog",
+    "autoload": {
+        "psr-4": {
+            "Maciel\\BlogFaculdade\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "elitymaciel",
+            "email": "elitymaciel@hotmail.com"
+        }
+    ],
+    "require": {}
+}
