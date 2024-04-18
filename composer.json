@@ -1,9 +1,11 @@
 {
-    "name": "maciel/blog_faculdade",
+    "name": "blog/faculdade",
     "description": "Sistema gerenciador de blog",
     "autoload": {
         "psr-4": {
-            "Maciel\\BlogFaculdade\\": "src/"
+            "Blog\\Faculdade\\Controllers\\": "src/Controllers/",
+            "Blog\\Faculdade\\Models\\": "src/Models/",
+            "Blog\\Faculdade\\Views\\": "src/Views/" 
         }
     },
     "authors": [
@@ -12,5 +14,7 @@
             "email": "elitymaciel@hotmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
 }

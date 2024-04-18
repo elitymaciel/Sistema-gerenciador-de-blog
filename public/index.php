@@ -1,3 +1,6 @@
-<?php 
+<?php  
+define('APP_ROOT', dirname(__DIR__));
 
-echo 'Olá Mundo! inicio do projeto blog';
+require_once APP_ROOT . '/core/web.php';
+require_once APP_ROOT . '/vendor/autoload.php';
+  
