@@ -6,6 +6,6 @@ class HomeController {
         $title = "Página Inicial";
         $message = "Bem-vindo à Página Inicial!";
 
-        require_once APP_ROOT . '/src/Views/home.php';
+        require_once APP_ROOT . '/src/Views/front/index.php';
     }
 }

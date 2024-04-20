@@ -10,9 +10,25 @@
     },
     "authors": [
         {
-            "name": "elitymaciel",
+            "name": "Maciel da Cruz Oliveira",
             "email": "elitymaciel@hotmail.com"
-        }
+        },
+        {
+            "name": "Gabriel Araújo Lira Mourão",
+            "email": "xxxx@hotmail.com"
+        },
+        {
+            "name": "Jhonnata da Silveira Nascimento",
+            "email": "xxxxx@hotmail.com"
+        },
+        {
+            "name": "Saulo Viana Alves",
+            "email": "xxxxx@hotmail.com"
+        },
+        {
+            "name": "Gabriel Pacheco Ferreira",
+            "email": "xxxxx@hotmail.com"
+        },
     ],
     "require": {
         "vlucas/phpdotenv": "^5.6"

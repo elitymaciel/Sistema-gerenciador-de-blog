@@ -1,11 +1,7 @@
 <?php
 
 use Blog\Faculdade\Controllers\HomeController;
- 
-
-require_once APP_ROOT . '/core/Router.php';
-require_once APP_ROOT . '/config/config.php';
- 
+  
 require_once APP_ROOT . '/vendor/autoload.php';
    
 $url = $_SERVER['REQUEST_URI'];
