@@ -1,6 +1,8 @@
 <?php
+namespace Blog\Faculdade\Core;
 
-use Dotenv\Dotenv;
+use PDO;
+use PDOException; 
 
 class Database {
     private $host;
@@ -9,14 +11,11 @@ class Database {
     private $dbname;
     private $conn;
 
-    public function __construct() { 
-        $dotenv = Dotenv::createImmutable(__DIR__);
-        $dotenv->load();
- 
-        $this->host = $_ENV['DB_HOST'];
-        $this->username = $_ENV['DB_USERNAME'];
-        $this->password = $_ENV['DB_PASSWORD'];
-        $this->dbname = $_ENV['DB_NAME'];
+    public function __construct() {   
+        $this->host = '172.16.238.10';
+        $this->username = 'root';
+        $this->password = '_G[AbpOOHXh5NtBP';
+        $this->dbname = 'blog';
  
         $dsn = "mysql:host={$this->host};dbname={$this->dbname}";
         $options = array(

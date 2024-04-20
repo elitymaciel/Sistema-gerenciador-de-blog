@@ -5,7 +5,8 @@
         "psr-4": {
             "Blog\\Faculdade\\Controllers\\": "src/Controllers/",
             "Blog\\Faculdade\\Models\\": "src/Models/",
-            "Blog\\Faculdade\\Views\\": "src/Views/" 
+            "Blog\\Faculdade\\Views\\": "src/Views/",
+            "Blog\\Faculdade\\Core\\": "core/" 
         }
     },
     "authors": [
@@ -28,7 +29,7 @@
         {
             "name": "Gabriel Pacheco Ferreira",
             "email": "xxxxx@hotmail.com"
-        },
+        }
     ],
     "require": {
         "vlucas/phpdotenv": "^5.6"

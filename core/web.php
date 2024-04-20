@@ -1,4 +1,5 @@
 <?php
+namespace Blog\Faculdade\Core;
 
 use Blog\Faculdade\Controllers\HomeController;
   
