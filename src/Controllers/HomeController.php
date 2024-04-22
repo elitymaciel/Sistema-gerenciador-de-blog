@@ -2,11 +2,14 @@
 namespace Blog\Faculdade\Controllers;
 
 use Blog\Faculdade\Models\Usuario;
+use Blog\Faculdade\Controllers\Controller;
 
-class HomeController {
+class HomeController extends Controller
+{
+   
+
     public function index() {
-        $title = "Página Inicial";
-        $message = "Bem-vindo à Página Inicial!";
+        
         /* $user = new Usuario();
         print_r($user->getUsuarioById(1)); */
 
