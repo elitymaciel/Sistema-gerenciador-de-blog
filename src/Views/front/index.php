@@ -22,7 +22,7 @@
                         <li class="nav-item"><a class="nav-link" href="#">Início</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Recentes</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Contatos</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Login</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/login">Login</a></li>
                     </ul>
                 </div>
             </div>
