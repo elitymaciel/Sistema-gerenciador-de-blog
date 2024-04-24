@@ -1,22 +1,8 @@
-<!doctype html>
-<html lang="en" data-bs-theme="auto">
-
-<head> 
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Sistema gerenciador de blog">
-    <meta name="author" content="Maciel, Gabriel, Jhonnata, Saulo, Gabriel"> 
-    <title><?= $this->title ?></title>
+<?php 
+    include APP_ROOT . '/src/Views/login/header.php';
+?>
 
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/sign-in.css" rel="stylesheet">
-  
-</head>
-
-<body class="d-flex align-items-center py-4 bg-body-tertiary">
     <main class="form-signin w-100 m-auto">
         <form> 
             <h1 class="h3 mb-3 fw-normal text-center ">LOGIN</h1>
@@ -36,8 +22,7 @@
             <p class="mt-5 mb-3 text-body-secondary text-center">&copy; 2024–2024</p>
         </form>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-
-</html>
+   
+<?php 
+    include APP_ROOT . '/src/Views/login/footer.php';
+?>

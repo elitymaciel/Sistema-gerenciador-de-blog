@@ -13,23 +13,25 @@ class Usuario {
         $this->db = new Database();
     }
 
-    public function criarUsuario($nome, $email, $senha, $endereco, $cidade)
+    public function criarUsuario($nome, $email, $senha, $endereco, $cidade, $permissao)
     {
         $conn = $this->db->getConnection();
 
         try {
-            $criarUsuario = $conn->prepare("INSERT INTO usuarios (nome, email, senha, endereco, cidade) VALUES (:nome, :email, :senha, :endereco, :cidade)");
+            $criarUsuario = $conn->prepare("INSERT INTO usuarios (nome, email, senha, endereco, cidade, permissao) VALUES (:nome, :email, :senha, :endereco, :cidade, :permissao)");
             
-            $criarUsuario->bindParam(':username', $nome);
+            $criarUsuario->bindParam(':nome', $nome);
             $criarUsuario->bindParam(':email', $email);
-            $criarUsuario->bindParam(':password', $senha);
+            $criarUsuario->bindParam(':senha', $senha);
             $criarUsuario->bindParam(':endereco', $endereco);
             $criarUsuario->bindParam(':cidade', $cidade);
+            $criarUsuario->bindParam(':permissao', $permissao);
+
  
             $criarUsuario->execute(); 
             return $conn->lastInsertId();
         } catch(PDOException $e) {
-            return $e;
+            return $e->getMessage();
         }
     }
 

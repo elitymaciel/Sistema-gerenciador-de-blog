@@ -23,10 +23,10 @@ switch ($url) {
         break;
     case 'login': 
         $login->index();
-        break;
+        break; 
     case 'cadastro': 
         $login->cadastroUsuario();
-        break;
+        break; 
     case 'painel':  
         $painel->index();
         break;
