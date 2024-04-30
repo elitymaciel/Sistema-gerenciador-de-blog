@@ -1,6 +1,5 @@
 <?php
-namespace Blog\Faculdade\Core;
-require_once APP_ROOT . '/vendor/autoload.php';
+namespace Blog\Faculdade\Core; 
 
 use Blog\Faculdade\Controllers\HomeController;
 use Blog\Faculdade\Controllers\LoginController;
@@ -15,7 +14,7 @@ $painel = new PainelController();
 $login = new LoginController();
 
 switch ($url) {
-    case '':         
+    case '':       
         $frontBlog->index();
         break;
     case 'sobre': 
@@ -23,6 +22,9 @@ switch ($url) {
         break;
     case 'login': 
         $login->index();
+        break; 
+    case 'logout':
+        $login->logout();
         break; 
     case 'cadastro': 
         $login->cadastroUsuario();

@@ -18,6 +18,10 @@ class Database {
         $this->dbname = 'blog';
  
         $dsn = "mysql:host={$this->host};dbname={$this->dbname}";
+
+        /* define o modo de error para a conexão para o php lança exceçoes quando ocorrer 
+        https://www.php.net/manual/en/pdo.error-handling.php
+        */ 
         $options = array(
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         );

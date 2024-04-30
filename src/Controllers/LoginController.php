@@ -8,20 +8,52 @@ class LoginController extends Controller
 {
     public function index() {
          
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = $_POST['email'];
+            $password = $_POST['senha'];
+
+            $usuario = Usuario::where('usuarios', 'email', $email);
+             
+             
+            if ($usuario && password_verify($password, $usuario->senha)) { 
+                $_SESSION['usuario_id'] = $usuario->id;
+                $_SESSION['nome'] = $usuario->nome;
+
+                header("Location: " . '/painel');
+            } else {
+                echo "E-mail ou senha incorretos.";
+            }
+        }
+
         require_once APP_ROOT . '/src/Views/login/index.php';
     }
 
     public function cadastroUsuario()
     { 
-        $resultado = $_POST;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            /* Pega os inputs enviado via post e armazena na variavel resultados */
+            $resultado = $_POST;
 
-        if (!empty($resultado)) {
+            /* Instancia a class Usuario e chama a função criaUsuario e  passa os 
+            paramentro na ordem para criar um novo usuario e seta com permisao visitante */
             $user = new Usuario();
-            $user->criarUsuario($resultado['name'], $resultado['email'], $resultado['password'], 'asdfdf', 'asdf', 'administrador');
-            
-        } 
-        
+            $user->criarUsuario($resultado['name'], $resultado['email'], $resultado['password'], 'asdfdf', 'asdf', 'visitante');
 
+        }
+
+        /* caso n entre na condição do if, e quando recebe um metodo post abre a pagina de cadastro */
         require_once APP_ROOT . '/src/Views/login/cadastro.php';
     }
+
+    public function logout()
+    { 
+        /* usa o comando destroy para garantir q seja limpo todos so dados */
+        session_destroy();
+
+        /* redireciona para a rota login se tudo ocorre com sucesso */
+        header("Location: login");
+        exit;
+    }
+ 
 }
