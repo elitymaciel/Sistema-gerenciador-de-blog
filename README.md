@@ -1,4 +1,5 @@
 # Sistema Gerenciador de blog 
+Uniasselvi - Turma: 5016105 - Análise e Desenvolvimento de Sistemas
 
 [![Maintainer](http://img.shields.io/badge/maintainer-@MacielOliveira-success.svg?style=flat-square)]()
 [![Source Code](https://img.shields.io/badge/source-elitymaciel/Sistema_gerenciador_de_blog-red.svg?style=flat-square)](https://github.com/elitymaciel/Sistema-gerenciador-de-blog)
@@ -17,9 +18,8 @@ Baixando os arquivos
 ```
 git clone https://github.com/elitymaciel/Sistema-gerenciador-de-blog.git
 ``` 
-```
 Finalizando instalação com composer
- ```
+
  ```
 php composer.phar install
 ```
