@@ -31,27 +31,6 @@ class Categoria {
         }
     }
 
-    static public function consulta()
-    { 
-        $database = new Database();
-        $conn = $database->getConnection();
-
-        $usuario = $_SESSION['usuario_id'];
-        
-        try {
-            $consulta = $conn->prepare("SELECT * FROM `posts` WHERE `usuario_id` = $usuario"); 
-            $consulta->execute();
     
-            $resultado = $consulta->fetchAll(PDO::FETCH_OBJ); // Obter resultado como objetos
-            
-            if (count($resultado) > 0) {
-                return $resultado; // Retornar o resultado da consulta
-            } else {
-                return null; // Sem resultados
-            }
-        } catch (PDOException $e) {
-            return $e->getMessage(); // Em caso de exceção
-        }
-    }
 }
 

@@ -13,4 +13,9 @@ class Controller
         $this->message = "Noticias e tecnologia";
         $this->footer = "Paper UNIASSELVI -  Análise e Desenvolvimento de Sistemas (5016105)";
     }
+
+    public function visualizarPost($post_id)
+    {
+        var_dump($post_id);
+    }
 }

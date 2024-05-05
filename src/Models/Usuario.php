@@ -36,14 +36,11 @@ class Usuario {
             $criarUsuario->bindParam(':cidade', $cidade);
             $criarUsuario->bindParam(':permissao', $permissao);
 
-            /* Apos monta novamente o coddido SQL com os dados q eu quero eu uso a função execute pra percorre no banco de dados */
-            $criarUsuario->execute(); 
+              $criarUsuario->execute(); 
 
-            /* se executar a corretamente o codigo continua e retorna o resultado para a function o id do cadastro */
-            return $conn->lastInsertId();
+              return $conn->lastInsertId();
 
-        } catch(PDOException $e) {
-            /* retorna na function o erro q ocorreu no codigo q esta entre o try  */
+        } catch(PDOException $e) { 
             return $e->getMessage();
         }
     }

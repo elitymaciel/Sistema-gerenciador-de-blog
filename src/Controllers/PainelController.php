@@ -13,7 +13,7 @@ class PainelController extends Controller
          if (!isset($_SESSION['nome'])) {
             header("Location:" . "/login"); 
          }
-        $categorias = Categoria::consulta();
+        $categorias = Post::consultaPosts();
         require_once APP_ROOT . '/src/Views/painel/index.php';
     }
 
