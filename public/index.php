@@ -1,5 +1,6 @@
-<?php  
- 
+<?php 
+date_default_timezone_set("America/Sao_Paulo");
+session_start();
  
 define('APP_ROOT', dirname(__DIR__));
 

@@ -32,6 +32,12 @@ switch ($url) {
     case 'painel':  
         $painel->index();
         break;
+    case 'cadastro/post':  
+        $painel->criarNovoPost();
+        break;
+    case 'cadastro/categoria':  
+        $painel->criarNovaCategoria();
+        break;
     default: 
         http_response_code(404);
         echo "Página não encontrada";

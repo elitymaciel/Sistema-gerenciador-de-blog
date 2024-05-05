@@ -20,8 +20,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" href="#">Início</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Recentes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Contatos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Recentes</a></li> 
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="/login">Login</a></li>
                     </ul>
                 </div>
@@ -36,7 +35,7 @@
                         <!-- Post header-->
                         <header class="mb-4">
                             <!-- Post title-->
-                            <h1 class="fw-bolder mb-1">Welcome to Blog Post!</h1>
+                            <h1 class="fw-bolder mb-1">James Webb encontrou vida fora da Terra? Cientistas dizem que não</h1>
                             <!-- Post meta content-->
                             <div class="text-muted fst-italic mb-2">Posted on January 1, 2023 by Start Bootstrap</div>
                             <!-- Post categories-->
@@ -44,7 +43,7 @@
                             <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
                         </header>
                         <!-- Preview image figure-->
-                        <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
+                        <figure class="mb-4"><img class="img-fluid rounded" src="https://t.ctcdn.com.br/iJStSZyyTET27a60-_TiCUdMz00=/768x432/smart/i375393.jpeg" alt="..." /></figure>
                         <!-- Post content-->
                         <section class="mb-5">
                             <p class="fs-5 mb-4">Science is an enterprise that should be cherished as an activity of the free human mind. Because it transforms who we are, how we live, and it gives us an understanding of our place in the universe.</p>

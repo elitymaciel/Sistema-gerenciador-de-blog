@@ -1,11 +1,21 @@
 <?php
 namespace Blog\Faculdade\Controllers;
  
-use Blog\Faculdade\Models\Usuario;
-use Blog\Faculdade\Controllers\Controller;
+use Blog\Faculdade\Models\Usuario; 
 
-class LoginController extends Controller
+class LoginController
 {
+
+    public $title = "";
+    public $message = "";
+    public $footer = "";
+
+    public function __construct()
+    {
+        $this->title = "login";
+        $this->message = "Noticias e tecnologia";
+        $this->footer = "Paper UNIASSELVI -  Análise e Desenvolvimento de Sistemas (5016105)";
+    }
     public function index() {
          
         
@@ -39,7 +49,8 @@ class LoginController extends Controller
             paramentro na ordem para criar um novo usuario e seta com permisao visitante */
             $user = new Usuario();
             $user->criarUsuario($resultado['name'], $resultado['email'], $resultado['password'], 'asdfdf', 'asdf', 'visitante');
-
+            
+            header("Location:" . "/login");
         }
 
         /* caso n entre na condição do if, e quando recebe um metodo post abre a pagina de cadastro */
@@ -52,8 +63,7 @@ class LoginController extends Controller
         session_destroy();
 
         /* redireciona para a rota login se tudo ocorre com sucesso */
-        header("Location: login");
-        exit;
+        header("Location:" . "/login"); 
     }
  
 }
