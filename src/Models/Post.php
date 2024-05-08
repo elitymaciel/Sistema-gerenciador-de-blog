@@ -86,5 +86,45 @@ class Post {
             return $e->getMessage(); // Em caso de exceção
         }
     }
+
+    static function atualizarPublicacao($post_id, $titulo, $conteudo, $categoria_id)
+    {
+        $database = new Database();
+        $conn = $database->getConnection();
+        /* UPDATE `posts` SET  `titulo`='Temporal nod',`data_criacao`=null ,`image`=null,`conteudo`='asasdf',`categoria_id`=null WHERE id = 5*/
+        try {  
+            $criarNovaPublicacao = $conn->prepare("UPDATE posts
+                                                SET  titulo = :titulo, conteudo = :conteudo , categoria_id = :categoria_id
+                                                WHERE id = :id"); 
+            $criarNovaPublicacao->execute(array(
+                ':id'   => $post_id,
+                ':titulo' => $titulo,
+                ':conteudo'	 => $conteudo,
+                ':categoria_id'	 => $categoria_id
+              ));
+            
+            echo $criarNovaPublicacao->rowCount();
+
+        } catch(PDOException $e) { 
+            return $e->getMessage();
+        }
+    }
+
+    static function excluirPublicacao($post_id)
+    {
+        $database = new Database();
+        $conn = $database->getConnection();
+
+        try {  
+            $excluirPublicacao = $conn->prepare("DELETE FROM posts WHERE id = :id"); 
+            $excluirPublicacao->execute(array(
+                ':id'   => $post_id, 
+              )); 
+            echo $excluirPublicacao->rowCount();
+
+        } catch(PDOException $e) { 
+            return $e->getMessage();
+        }
+    }
 }
 

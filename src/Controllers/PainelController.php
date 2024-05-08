@@ -64,4 +64,45 @@ class PainelController extends Controller
             header("Location:" . "/painel"); 
         } 
     }
+
+    public function getPost($id)
+    {
+        $posts = Post::consultaPost($id);
+        
+        echo json_encode($posts);
+    }
+
+    public function atualizarPost()
+    {
+        $resultado = $_POST;
+
+        $image = null;
+
+        if (isset($_FILES['imagem'])) {
+            $nome = $_FILES['imagem']['name'];
+            $temporario = $_FILES['imagem']['tmp_name'];
+
+            $extensao = pathinfo($nome, PATHINFO_EXTENSION);
+            $novoNomeImagem = uniqid('img_', true) . '.' . $extensao;
+
+            $destinoSalvaImagem = APP_ROOT .'/public/imagens/' . $novoNomeImagem;
+
+            move_uploaded_file($temporario, $destinoSalvaImagem); 
+        }
+
+        if ($resultado['categoria'] == '') {
+            $resultado['categoria'] = '';
+        } 
+
+        $post = Post::atualizarPublicacao($resultado['id'], $resultado['titulo'], $resultado['conteudo'], $resultado['categoria']);
+         
+        if ($post) {
+            header("Location:" . "/painel"); 
+        } 
+    }
+
+    public function deletePost($post_id)
+    {
+        var_dump($post_id);
+    }
 }

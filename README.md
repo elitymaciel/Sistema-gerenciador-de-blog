@@ -34,10 +34,12 @@ php -S localhost:3000
 * [git](https://git-scm.com/download/win) - Dependency Management
 * [mysql](https://dev.mysql.com/downloads/installer/) - Dependency 
 * [php 8.2](https://windows.php.net/download#php-8.2) - Dependency
+* [bootstrap](https://getbootstrap.com/) - Dependency
+* [javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) - Dependency
 
 ## Autores / Authors
 
-* **Maciel da Cruz Oliveira** - *Programador* - [MacielOliveira](https://github.com/elitymaciel)
+* **Maciel da Cruz Oliveira** - *Programador, Contribudor* - [MacielOliveira](https://github.com/elitymaciel)
 * **Gabriel Araújo Lira Mourão** - *Contribudor* - 
 * **Jhonnata da Silveira Nascimento** - *Contribudor* - 
 * **Saulo Viana Alves** - *Contribudor* - 

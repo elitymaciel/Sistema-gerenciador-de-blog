@@ -37,7 +37,12 @@ switch ($main_part) {
         break;
     case 'cadastro':
         if (isset($url_parts[1])) {
-            if ($url_parts[1] == 'post') { 
+            if ($url_parts[1] == 'post') {
+                if (isset($url_parts[2])) {
+                    if ($url_parts[2] == 'atualizar') { 
+                        $painel->atualizarPost();
+                    }
+                } 
                 $painel->criarNovoPost();
             } elseif ($url_parts[1] == 'categoria') {
                 $painel->criarNovaCategoria();
@@ -48,11 +53,24 @@ switch ($main_part) {
         break;
     case 'post':
         if (isset($url_parts[1])) {
+            if (isset($url_parts[2])) {
+                if ($url_parts[2] == 'excluir') {
+                    $post_id = (int) $url_parts[3];
+                    $painel->deletePost($post_id);
+                }
+            } 
             $post_id = (int) $url_parts[1];
             $frontBlog->visualizarPost($post_id);
         } else {
             http_response_code(404);
             echo "Post não encontrado";
+        }
+        break;
+    case 'consulta':
+        if (isset($url_parts[1])) {
+            if ($url_parts[1] == 'post') { 
+                $painel->getPost($url_parts[2]);
+            }
         }
         break;
     default: 

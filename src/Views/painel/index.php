@@ -58,7 +58,9 @@
                                         </div>
 
                                         <div class="actions">
-                                            <a class="btn btn-primary botao" href="" title="">Editar</a>
+                                        <button type="button" class="btn btn-primary botao" data-whatever="<?= $post->id ?>" data-bs-toggle="modal" data-bs-target="#modalEditar">
+                                            Editar
+                                        </button> 
                                             <a class="btn btn-danger botao" href="" title="">Deletar</a>
                                         </div>
                                     </article>
@@ -70,12 +72,7 @@
                     <?php
                     endforeach
                     ?>
-                </div>
-                <!-- <card class="app_blog_home">
-                        <article>
-                            
-                        </article>
-                    </section> -->
+                </div> 
             </div>
             <!-- Side widgets-->
             <div class="col-lg-4">
@@ -98,29 +95,33 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
+                        <?php 
+                        $categoriasPainel = []; 
+
+                        foreach ($categorias as $resultado) {
+                            $categoriasPainel[] = $resultado->nome;
+                        } 
+                                $divideConsulta = ceil(count($categoriasPainel) / 2);
+                                $coluna1 = array_slice($categoriasPainel, 0, $divideConsulta);
+                                $coluna2 = array_slice($categoriasPainel, $divideConsulta);  
+                            ?>
                             <div class="col-sm-6">
                                 <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">Web Design</a></li>
-                                    <li><a href="#!">HTML</a></li>
-                                    <li><a href="#!">Freebies</a></li>
+                                    <?php foreach ($coluna1 as $categoria): ?>
+                                        <li><a href="#!"><?= htmlspecialchars($categoria) ?></a></li>
+                                    <?php endforeach; ?>
                                 </ul>
                             </div>
                             <div class="col-sm-6">
                                 <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">JavaScript</a></li>
-                                    <li><a href="#!">CSS</a></li>
-                                    <li><a href="#!">Tutorials</a></li>
+                                    <?php foreach ($coluna2 as $categoria): ?>
+                                        <li><a href="#!"><?= htmlspecialchars($categoria) ?></a></li>
+                                    <?php endforeach; ?>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Side widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Side Widget</div>
-                    <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-                </div>
+                </div> 
             </div>
         </div>
     </div>
@@ -167,6 +168,52 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Publicação</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formularioEditar" action="/cadastro/post/atualizar" method="POST" enctype="multipart/form-data"">
+                        <div class="row"> 
+
+                        <input type="hidden" name="id" id="id_post">
+                        <div class="col-md-12">
+                            <label for="titulo" class="form-label">Titulo</label>
+                            <input type="text" class="form-control" id="tituloEditar" name="titulo">
+                        </div>
+                        <div class="col-6 mt-4">
+                            <label for="imagem" class="form-label">Imagem</label>
+                            <input type="file" name="imagem" class="form-control" id="imagemEditar">
+                        </div>
+                        <div class="col-6 mt-4">
+                            <label for="categoria" class="form-label">Categoria</label>
+                            <select name="categoria" id="categoriaEditar" class="form-control">
+                                <option value="" selected>Selecione uma categoria</option>
+                                <?php foreach ($categorias as $categoria) {  ?>
+                                    <option value="<?= $categoria->id ?>"><?= $categoria->nome ?></option>
+                                <?php } ?>
+                            </select>
+                        </div> 
+                        <div class="col-md-12 mt-4">
+                            <label class="label">
+                                <span class="legend">*Conteúdo:</span> 
+                            </label>
+                            <textarea class="mce" name="conteudo" id="conteudoEditar"> </textarea>
+                        </div>
+                        </div>
+                </div>
+                <div class="modal-footer ">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Sair</button>
+                    <button type="submit" class="btn btn-primary">Atualizar</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="categoria2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -196,6 +243,20 @@
     <script src="js/jquery.min.js"></script>
     <script src="tinymce/tinymce.min.js"></script>
     <script src="js/scripts.js"></script>
+    <script>
+        $('#modalEditar').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)  
+            var id = button.data('whatever')
+
+            $.get("/consulta/post/"+id, function(resultado){
+                const tranformandoResultadoJson = JSON.parse(resultado);
+                document.getElementById("id_post").value = tranformandoResultadoJson.id
+                document.getElementById("tituloEditar").value = tranformandoResultadoJson.titulo;  
+                tinyMCE.get('conteudoEditar').getBody().innerHTML = tranformandoResultadoJson.conteudo; 
+            }) 
+             
+        })
+    </script>
 </body>
 
 </html>
