@@ -39,8 +39,8 @@
                     </div>
                     <div class="titulo">
                         <h2>
-                            <a href="" class="">
-                                <p><?= $post->titulo ?></p>
+                            <a href="post/<?= $post->id ?>" class="">
+                                <p><?=  substr($post->titulo, 0, 45 - 3) . " ..." ?></p>
                             </a>
                         </h2>
                         <div class="categoria mt-4">
@@ -96,26 +96,33 @@
                     <div class="card-header">Categories</div>
                     <div class="card-body">
                         <div class="row">
+                            <?php 
+                                $divideConsulta = ceil(count($categorias) / 2);
+                                $coluna1 = array_slice($categorias, 0, $divideConsulta);
+                                $coluna2 = array_slice($categorias, $divideConsulta);  
+                            ?>
                             <div class="col-sm-6">
                                 <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">Web Design</a></li>
-                                    <li><a href="#!">HTML</a></li>
-                                    <li><a href="#!">Freebies</a></li>
+                                    <?php foreach ($coluna1 as $categoria): ?>
+                                        <li><a href="#!"><?= htmlspecialchars($categoria) ?></a></li>
+                                    <?php endforeach; ?>
                                 </ul>
                             </div>
                             <div class="col-sm-6">
                                 <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">JavaScript</a></li>
-                                    <li><a href="#!">CSS</a></li>
-                                    <li><a href="#!">Tutorials</a></li>
+                                    <?php foreach ($coluna2 as $categoria): ?>
+                                        <li><a href="#!"><?= htmlspecialchars($categoria) ?></a></li>
+                                    <?php endforeach; ?>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card mb-4">
-                    <div class="card-header">Side Widget</div>
-                    <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
+                    <div class="card-header">Criadores</div>
+                    <div class="card-body">
+                        usuarios
+                    </div>
                 </div>
             </div>
         </div>

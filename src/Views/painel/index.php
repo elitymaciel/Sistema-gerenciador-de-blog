@@ -34,7 +34,8 @@
             <div class="col-lg-8">
                 <div class="row">
                     <?php
-                    foreach ($categorias as $categoria): 
+                    foreach ($posts as $post):
+                    $data = new DateTime($post->data_criacao);
                     ?>
                         <div class="col-lg-4">
 
@@ -43,17 +44,17 @@
 
                                     <article>
                                         <div class="cover embed radius">
-                                            <img src="imagens/<?= $categoria->image ?>" alt="">
+                                            <img src="imagens/<?= $post->image ?>" alt="">
                                         </div>
                                         <h3 class="tittle">
-                                            <a target="_blank" href="../"><?= $categoria->titulo ?></a>
+                                            <a target="_blank" href="../"><?= $post->titulo ?></a>
                                         </h3>
 
                                         <div class="info">
-                                            <p class="icon-clock-o"><!-- <?= $categoria->data_criacao ?> --> 22.10.19 às 14h22</p>
-                                            <p class="icon-bookmark"><!-- <?= $categoria->categoria_id ?> --> categoria</p>
-                                            <p class="icon-user"><?= $_SESSION['nome'] ?> </p>
-                                            <p class="icon-bar-chart">P-00<?= $categoria->id ?></p>
+                                            <p class="icon-clock-o"> <?= $formatacao->format($data)  ?> </p>
+                                            <p class="icon-bookmark"> <?= $post->categoria ?> </p>
+                                            <p class="icon-user"> <?= $post->usuario ?> </p>
+                                            <p class="icon-bar-chart">P-00<?= $post->id ?></p>
                                         </div>
 
                                         <div class="actions">

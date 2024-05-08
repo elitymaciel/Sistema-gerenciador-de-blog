@@ -31,6 +31,27 @@ class Categoria {
         }
     }
 
+    static function listaCategoria()
+    {
+        $database = new Database();
+        $conn = $database->getConnection();
+        
+        try {
+            $consulta = $conn->prepare("SELECT * FROM categorias");
+            $consulta->execute(); 
+            
+            $resultado = $consulta->fetchAll(PDO::FETCH_OBJ); 
+            
+            if (count($resultado) > 0) {
+                return $resultado; 
+            } else {
+                return null; 
+            }
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
     
 }
 

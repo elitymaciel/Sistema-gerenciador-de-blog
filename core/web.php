@@ -9,13 +9,15 @@ use Blog\Faculdade\Controllers\PainelController;
 $url = $_SERVER['REQUEST_URI'];
 $url = strtok($url, '?');
 $url = trim($url, '/');
+
 $url_parts = explode('/', trim($url, '/')); // Divide a URL pelo '/', removendo '/' do início/fim
 $main_part = isset($url_parts[0]) ? $url_parts[0] : '';
+ 
 
 $frontBlog = new HomeController();
 $painel = new PainelController();
 $login = new LoginController();
-
+ 
 switch ($main_part) {
     case '':       
         $frontBlog->index();
@@ -29,17 +31,20 @@ switch ($main_part) {
     case 'logout':
         $login->logout();
         break; 
-    case 'cadastro': 
-        $login->cadastroUsuario();
-        break; 
+    
     case 'painel':  
         $painel->index();
         break;
-    case 'cadastro/post':  
-        $painel->criarNovoPost();
-        break;
-    case 'cadastro/categoria':  
-        $painel->criarNovaCategoria();
+    case 'cadastro':
+        if (isset($url_parts[1])) {
+            if ($url_parts[1] == 'post') { 
+                $painel->criarNovoPost();
+            } elseif ($url_parts[1] == 'categoria') {
+                $painel->criarNovaCategoria();
+            } elseif ($url_parts[1] == 'usuario') {
+                 $login->cadastroUsuario();   
+            }
+        } 
         break;
     case 'post':
         if (isset($url_parts[1])) {

@@ -61,5 +61,30 @@ class Post {
             return $e->getMessage(); // Em caso de exceção
         }
     }
+
+    static public function consultaPost($postId)
+    {
+        $database = new Database();
+        $conn = $database->getConnection();
+ 
+        try {
+            $consulta = $conn->prepare("SELECT U.nome as usuario, C.nome as categoria, P.*
+                                        FROM `posts` as P
+                                        JOIN usuarios as U ON P.usuario_id = U.id
+                                        JOIN categorias as C ON P.categoria_id = C.id
+                                        WHERE P.id = $postId "); 
+            $consulta->execute();
+    
+            $resultado = $consulta->fetchAll(PDO::FETCH_OBJ); // Obter resultado como objetos
+            
+            if (count($resultado) > 0) {
+                return $resultado[0]; // Retornar o resultado da consulta
+            } else {
+                return null; // Sem resultados
+            }
+        } catch (PDOException $e) {
+            return $e->getMessage(); // Em caso de exceção
+        }
+    }
 }
 

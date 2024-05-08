@@ -1,9 +1,11 @@
 <?php
 namespace Blog\Faculdade\Controllers;
  
-use Blog\Faculdade\Controllers\Controller;
-use Blog\Faculdade\Models\Categoria;
+use DateTime;
+use IntlDateFormatter;
 use Blog\Faculdade\Models\Post;
+use Blog\Faculdade\Models\Categoria;
+use Blog\Faculdade\Controllers\Controller;
 
 class PainelController extends Controller
 {
@@ -13,13 +15,23 @@ class PainelController extends Controller
          if (!isset($_SESSION['nome'])) {
             header("Location:" . "/login"); 
          }
-        $categorias = Post::consultaPosts();
+        
+        $categorias = Categoria::listaCategoria();
+        $posts = Post::consultaPosts();
+        
+        $formatacao = new IntlDateFormatter(
+            'pt_BR',                
+            IntlDateFormatter::LONG,  
+            IntlDateFormatter::NONE   
+        ); 
+        
+
         require_once APP_ROOT . '/src/Views/painel/index.php';
     }
 
     public function criarNovoPost()
-    {
-
+    { 
+         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = $_POST; 
             $novoNomeImagem = '';
