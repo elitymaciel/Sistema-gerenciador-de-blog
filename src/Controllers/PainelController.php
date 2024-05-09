@@ -103,6 +103,9 @@ class PainelController extends Controller
 
     public function deletePost($post_id)
     {
-        var_dump($post_id);
+        $post = Post::excluirPublicacao($post_id);
+        if ($post) {
+            header("Location:" . "/painel");
+        }
     }
 }

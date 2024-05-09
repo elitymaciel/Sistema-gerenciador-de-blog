@@ -102,8 +102,12 @@ class Post {
                 ':conteudo'	 => $conteudo,
                 ':categoria_id'	 => $categoria_id
               ));
-            
-            echo $criarNovaPublicacao->rowCount();
+             
+            if ($criarNovaPublicacao->rowCount() > 0) {
+                return 'Atualizado com sucesso'; 
+            } else {
+                return null;
+            }
 
         } catch(PDOException $e) { 
             return $e->getMessage();
@@ -120,8 +124,13 @@ class Post {
             $excluirPublicacao->execute(array(
                 ':id'   => $post_id, 
               )); 
-            echo $excluirPublicacao->rowCount();
 
+            
+            if ($excluirPublicacao->rowCount() > 0) {
+                return 'excluido com sucesso';
+            } else {
+                return null;
+            }
         } catch(PDOException $e) { 
             return $e->getMessage();
         }

@@ -41,7 +41,10 @@ switch ($main_part) {
                 if (isset($url_parts[2])) {
                     if ($url_parts[2] == 'atualizar') { 
                         $painel->atualizarPost();
-                    }
+                    } elseif ($url_parts[2] == 'excluir') {
+                        $post_id = (int) $url_parts[3];
+                        $painel->deletePost($post_id);
+                    } 
                 } 
                 $painel->criarNovoPost();
             } elseif ($url_parts[1] == 'categoria') {
@@ -53,12 +56,7 @@ switch ($main_part) {
         break;
     case 'post':
         if (isset($url_parts[1])) {
-            if (isset($url_parts[2])) {
-                if ($url_parts[2] == 'excluir') {
-                    $post_id = (int) $url_parts[3];
-                    $painel->deletePost($post_id);
-                }
-            } 
+           
             $post_id = (int) $url_parts[1];
             $frontBlog->visualizarPost($post_id);
         } else {

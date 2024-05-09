@@ -34,6 +34,7 @@
             <div class="col-lg-8">
                 <div class="row">
                     <?php
+                    if (!empty($posts)){
                     foreach ($posts as $post):
                     $data = new DateTime($post->data_criacao);
                     ?>
@@ -47,7 +48,7 @@
                                             <img src="imagens/<?= $post->image ?>" alt="">
                                         </div>
                                         <h3 class="tittle">
-                                            <a target="_blank" href="../"><?= $post->titulo ?></a>
+                                            <a target="_blank" href="post/<?= $post->id ?>"><?= $post->titulo ?></a>
                                         </h3>
 
                                         <div class="info">
@@ -61,7 +62,7 @@
                                         <button type="button" class="btn btn-primary botao" data-whatever="<?= $post->id ?>" data-bs-toggle="modal" data-bs-target="#modalEditar">
                                             Editar
                                         </button> 
-                                            <a class="btn btn-danger botao" href="" title="">Deletar</a>
+                                            <a class="btn btn-danger botao" href="/cadastro/post/excluir/<?=  $post->id ?>" title="">Deletar</a>
                                         </div>
                                     </article>
 
@@ -70,7 +71,10 @@
 
                         </div>
                     <?php
-                    endforeach
+                    endforeach; 
+                        }else{
+                            echo "<h1>Não possuir posts criados</h1>";
+                        }; 
                     ?>
                 </div> 
             </div>
