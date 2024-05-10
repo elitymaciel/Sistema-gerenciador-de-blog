@@ -16,12 +16,11 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#!"><?= $this->title ?></a>
+            <a class="navbar-brand" href="/"><?= $this->title ?></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#">Início</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Recentes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/">Início</a></li> 
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="/login">Login</a></li>
                 </ul>
             </div>
@@ -30,7 +29,9 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-8">
-                <?php   
+                <?php
+                    if (!empty($posts)) { 
+                   
                     foreach ($posts as $post):
                 ?>
                 <div class="post-body" style=" color: red;">
@@ -54,7 +55,9 @@
                 <hr>
                 <?php 
                     endforeach;
-                ?>
+                } else { ?>
+                    <H1>Não possui posts para ser listados</H1>
+               <?php } ?>
                 <!-- <section class="mb-5">
                         <div class="card bg-light">
                             <div class="card-body">
@@ -121,7 +124,13 @@
                 <div class="card mb-4">
                     <div class="card-header">Criadores</div>
                     <div class="card-body">
-                        usuarios
+                        <ul>
+                            <li class="criadores">Maciel da Cruz Oliveira </li>
+                            <li class="criadores">Gabriel Araújo Lira Mourão</li>
+                            <li class="criadores">Jhonnata da Silveira Nascimento</li>
+                            <li class="criadores">Saulo Viana Alves</li>
+                            <li class="criadores">Gabriel Pacheco Ferreira</li>
+                        </ul> 
                     </div>
                 </div>
             </div>

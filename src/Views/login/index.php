@@ -17,7 +17,7 @@
             </div> 
             <button class="btn btn-primary w-100 py-2" type="submit">Entrar</button>
             <div class="text-start my-3"> 
-                 <a href="/cadastro">Fazer cadastro</a>
+                 <a href="/cadastro/usuario">Fazer cadastro</a>
             </div>
             <p class="mt-5 mb-3 text-body-secondary text-center">&copy; 2024–2024</p>
         </form>

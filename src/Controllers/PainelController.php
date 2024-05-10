@@ -2,6 +2,7 @@
 namespace Blog\Faculdade\Controllers;
  
 use DateTime;
+use Exception;
 use IntlDateFormatter;
 use Blog\Faculdade\Models\Post;
 use Blog\Faculdade\Models\Categoria;
@@ -33,23 +34,81 @@ class PainelController extends Controller
     { 
          
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data = $_POST; 
+            $data = $_POST;
             $novoNomeImagem = '';
             if (isset($_FILES['imagem'])) {
                 $nome = $_FILES['imagem']['name'];
                 $temporario = $_FILES['imagem']['tmp_name'];
-
+         
                 $extensao = pathinfo($nome, PATHINFO_EXTENSION);
+         
                 $novoNomeImagem = uniqid('img_', true) . '.' . $extensao;
-
-                $destinoSalvaImagem = APP_ROOT .'/public/imagens/' . $novoNomeImagem;
-
-                move_uploaded_file($temporario, $destinoSalvaImagem); 
-            } 
-                $post = new Post(); 
-                $post->criarPublicacao($_SESSION['usuario_id'], $data['titulo'], date("Y-m-d"), $novoNomeImagem, $data['conteudo'], intval($data['categoria']));
-              
+         
+                $destinoSalvaImagem = APP_ROOT . '/public/imagens/' . $novoNomeImagem;
+         
+                $novaLargura = 900;
+                $novaAltura = 400;
+         
+                $imagemRedimensionada = imagecreatetruecolor($novaLargura, $novaAltura);
+                imagefill($imagemRedimensionada, 0, 0, imagecolorallocate($imagemRedimensionada, 255, 255, 255)); // Fundo branco
+         
+                switch (strtolower($extensao)) {
+                    case 'jpg':
+                    case 'jpeg':
+                        $imagemOriginal = imagecreatefromjpeg($temporario);
+                        break;
+                    case 'png':
+                        $imagemOriginal = imagecreatefrompng($temporario);
+                        break;
+                    case 'gif':
+                        $imagemOriginal = imagecreatefromgif($temporario);
+                        break;
+                    default:
+                        throw new Exception("Tipo de imagem não suportado");
+                }
+         
+                list($larguraOriginal, $alturaOriginal) = getimagesize($temporario);
+         
+                $proporcaoOriginal = $larguraOriginal / $alturaOriginal;
+                $proporcaoNova = $novaLargura / $novaAltura;
+        
+                if ($proporcaoOriginal > $proporcaoNova) { 
+                    $larguraRedimensionada = $novaLargura;
+                    $alturaRedimensionada = intval($novaLargura / $proporcaoOriginal);
+                    $posY = intval(($novaAltura - $alturaRedimensionada) / 2); 
+                    $posX = 0;  
+                } else { 
+                    $alturaRedimensionada = $novaAltura;
+                    $larguraRedimensionada = intval($novaAltura * $proporcaoOriginal);
+                    $posX = intval(($novaLargura - $larguraRedimensionada) / 2); 
+                    $posY = 0; 
+                }
+         
+                imagecopyresampled($imagemRedimensionada, $imagemOriginal, $posX, $posY, 0, 0, $larguraRedimensionada, $alturaRedimensionada, $larguraOriginal, $alturaOriginal);
+         
+                switch (strtolower($extensao)) {
+                    case 'jpg':
+                    case 'jpeg':
+                        imagejpeg($imagemRedimensionada, $destinoSalvaImagem, 100);  
+                        break;
+                    case 'png':
+                        imagepng($imagemRedimensionada, $destinoSalvaImagem);
+                        break;
+                    case 'gif':
+                        imagegif($imagemRedimensionada, $destinoSalvaImagem);
+                        break;
+                }
+         
+                imagedestroy($imagemRedimensionada);
+                imagedestroy($imagemOriginal);
+        
+            }
+         
+            $post = new Post();
+            $post->criarPublicacao($_SESSION['usuario_id'], $data['titulo'], date("Y-m-d"), $novoNomeImagem, $data['conteudo'], intval($data['categoria']));
         }
+        
+        
         header("Location:" . "/painel"); 
     }
 

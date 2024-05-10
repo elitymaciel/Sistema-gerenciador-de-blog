@@ -21,7 +21,7 @@ class HomeController extends Controller
         foreach ($resultados as $resultado) {
             $categorias[] = $resultado->nome;
         } 
-        $posts = Post::consultaPosts();
+        $posts = Post::consultaPostsFront();
         require_once APP_ROOT . '/src/Views/front/index.php';
     }
 

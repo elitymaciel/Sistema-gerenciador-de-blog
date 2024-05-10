@@ -4,7 +4,7 @@
 
 
 <main class="form-signin w-100 m-auto">
-    <form action="/cadastro" method="post">
+    <form action="/cadastro/usuario" method="post">
         <h1 class="h3 mb-3 fw-normal text-center">Cadastro de Usuário</h1>
 
         <div class="form-floating mb-3">

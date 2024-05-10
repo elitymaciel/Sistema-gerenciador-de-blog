@@ -29,6 +29,7 @@ class LoginController
             if ($usuario && password_verify($password, $usuario->senha)) { 
                 $_SESSION['usuario_id'] = $usuario->id;
                 $_SESSION['nome'] = $usuario->nome;
+                $_SESSION['email'] = $usuario->email;
 
                 header("Location: " . '/painel');
             } else {

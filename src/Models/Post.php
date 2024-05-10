@@ -37,17 +37,61 @@ class Post {
             return $e->getMessage();
         }
     }
+    static public function consultaPostsFront()
+    { 
+        $database = new Database();
+        $conn = $database->getConnection();
+ 
+        try {  
+            $consulta = $conn->prepare("
+                    SELECT U.nome as usuario, C.nome as categoria, P.*
+                    FROM `posts` as P
+                    JOIN usuarios as U ON P.usuario_id = U.id
+                    JOIN categorias as C ON P.categoria_id = C.id
+                "); 
+            $consulta->execute();
+    
+            $resultado = $consulta->fetchAll(PDO::FETCH_OBJ); // Obter resultado como objetos
+            
+            if (count($resultado) > 0) {
+                return $resultado; // Retornar o resultado da consulta
+            } else {
+                return null; // Sem resultados
+            }
+        } catch (PDOException $e) {
+            return $e->getMessage(); // Em caso de exceção
+        }
+    }
+
     static public function consultaPosts()
     { 
         $database = new Database();
         $conn = $database->getConnection();
  
         try {
-            $consulta = $conn->prepare("SELECT U.nome as usuario, C.nome as categoria, P.*
-                                        FROM `posts` as P
-                                        JOIN usuarios as U ON P.usuario_id = U.id
-                                        JOIN categorias as C ON P.categoria_id = C.id
-                                        "); 
+            
+            if (!empty($_SESSION['email'])) {
+                $email = $_SESSION['email'];  
+            }
+
+            if (!empty($email)) { 
+                $consulta = $conn->prepare("
+                    SELECT U.nome as usuario, C.nome as categoria, P.*
+                    FROM `posts` as P
+                    JOIN usuarios as U ON P.usuario_id = U.id
+                    JOIN categorias as C ON P.categoria_id = C.id
+                    WHERE U.email = :email
+                "); 
+                $consulta->bindParam(':email', $email);
+            } else {
+                // Se o e-mail estiver vazio, traz todos os resultados
+                $consulta = $conn->prepare("
+                    SELECT U.nome as usuario, C.nome as categoria, P.*
+                    FROM `posts` as P
+                    JOIN usuarios as U ON P.usuario_id = U.id
+                    JOIN categorias as C ON P.categoria_id = C.id
+                ");
+            }
             $consulta->execute();
     
             $resultado = $consulta->fetchAll(PDO::FETCH_OBJ); // Obter resultado como objetos
