@@ -27,15 +27,16 @@ php composer.phar install
 php -S localhost:3000
 ```
 
-## Dependências / Software / Dependency
+## Dependências / Software
  
  
-* [composer](https://getcomposer.org/download/) - Dependency
-* [git](https://git-scm.com/download/win) - Dependency Management
-* [mysql](https://dev.mysql.com/downloads/installer/) - Dependency 
-* [php 8.2](https://windows.php.net/download#php-8.2) - Dependency
-* [bootstrap](https://getbootstrap.com/) - Dependency
-* [javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) - Dependency
+* [composer](https://getcomposer.org/download/) - Dependências
+* [git](https://git-scm.com/download/win) - Dependências
+* [mysql](https://dev.mysql.com/downloads/installer/) - Dependências 
+* [php 8.2](https://windows.php.net/download#php-8.2) - Dependências
+* [bootstrap](https://getbootstrap.com/) - Dependências
+* [javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) - Dependências
+* [MVC](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) - Estrutura de pasta
 
 ## Autores / Authors
 
